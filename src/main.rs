@@ -147,6 +147,7 @@ impl State {
     fn dead(&mut self, context: &mut BTerm) {
         context.cls();
         context.print_centered(5, "You are dead!");
+        context.print_centered(6, &format!("You earned {} points", self.score));
         context.print_centered(8, "(P)lay More");
         context.print_centered(9, "(Q)uit Game");
 
@@ -163,6 +164,8 @@ impl State {
         self.mode = GameMode::Playing;
         self.frame_time = 0.0;
         self.player = Player::new(5, 25);
+        self.score = 0;
+        self.obstacle = Obstacle::new(SCREEN_WIDTH, 0);
     }
 }
 
